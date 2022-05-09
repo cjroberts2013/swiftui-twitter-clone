@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        VStack {
+        VStack (alignment: .leading) {
             headerView
+            
             actionButtons
             
-            VStack {
-                
-            }
+            userInfoDetails
+            
+            
             
             Spacer()
         }
@@ -78,5 +79,65 @@ extension ProfileView {
 
         }
         .padding(.trailing)
+    }
+    
+    var userInfoDetails: some View {
+        VStack (alignment: .leading, spacing: 4) {
+            HStack {
+                Text("Heath Ledger")
+                    .font(.title2).bold()
+                Image(systemName: "checkmark.seal.fill")
+                    .foregroundColor(Color(.systemBlue))
+                    
+            }
+            
+            Text("@joker")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+            
+            Text("Your moms favorite villian")
+                .font(.subheadline)
+                .padding(.vertical)
+            
+            HStack (spacing: 24) {
+                HStack {
+                    Image(systemName: "mappin.and.ellipse")
+                
+                    Text("Gothan, NY")
+                }
+                
+                HStack {
+                    Image(systemName: "link")
+                
+                    Text("www.thejoker.com")
+                }
+            }
+            .font(.caption)
+            .foregroundColor(.gray)
+            
+            HStack (spacing: 24) {
+                HStack (spacing: 4) {
+                    Text("807")
+                        .font(.subheadline)
+                        .bold()
+                    
+                    Text("Following")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+                
+                HStack (spacing: 4) {
+                    Text("6.9M")
+                        .font(.subheadline)
+                        .bold()
+                    
+                    Text("Followers")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+            }
+            .padding(.vertical)
+        }
+        .padding(.horizontal)
     }
 }
