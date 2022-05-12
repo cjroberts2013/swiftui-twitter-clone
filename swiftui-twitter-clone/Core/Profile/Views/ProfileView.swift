@@ -21,15 +21,7 @@ struct ProfileView: View {
             
             tweetFilterBar
             
-            ScrollView {
-                LazyVStack {
-                    ForEach(0 ... 9, id: \.self) { _ in
-                        TweetsRowView()
-                    }
-                }
-            }
-            
-            
+            tweetsView
             
             Spacer()
         }
@@ -183,5 +175,16 @@ extension ProfileView {
             }
         }
         .overlay(Divider().offset(x: 0, y: 16))
+    }
+    
+    var tweetsView: some View {
+        ScrollView {
+            LazyVStack {
+                ForEach(0 ... 9, id: \.self) { _ in
+                    TweetsRowView()
+                        .padding()
+                }
+            }
+        }
     }
 }
