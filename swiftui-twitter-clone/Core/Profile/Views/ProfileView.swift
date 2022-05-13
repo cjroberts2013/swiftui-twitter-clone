@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @State private var selectedFilter: TweetFilterViewModel = .tweets
+    @Environment(\.presentationMode) var mode
     @Namespace var animation
     
     var body: some View {
@@ -44,6 +45,7 @@ extension ProfileView {
             VStack {
                 Button {
                     // Back button
+                    mode.wrappedValue.dismiss()
                     
                 } label: {
                     Image(systemName: "arrow.left")
@@ -79,7 +81,7 @@ extension ProfileView {
                     .font(.subheadline).bold()
                     .frame(width: 120, height: 32)
                     .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 0.75))
-                    .foregroundColor(.black)
+                    .foregroundColor(.primary)
             }
 
         }
@@ -108,7 +110,7 @@ extension ProfileView {
                 HStack {
                     Image(systemName: "mappin.and.ellipse")
                 
-                    Text("Gothan, NY")
+                    Text("Gotham, NY")
                 }
                 
                 HStack {
@@ -120,28 +122,7 @@ extension ProfileView {
             .font(.caption)
             .foregroundColor(.gray)
             
-            HStack (spacing: 24) {
-                HStack (spacing: 4) {
-                    Text("807")
-                        .font(.subheadline)
-                        .bold()
-                    
-                    Text("Following")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }
-                
-                HStack (spacing: 4) {
-                    Text("6.9M")
-                        .font(.subheadline)
-                        .bold()
-                    
-                    Text("Followers")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }
-            }
-            .padding(.vertical)
+            UserStatsView()
         }
         .padding(.horizontal)
     }
@@ -153,7 +134,7 @@ extension ProfileView {
                     Text(option.title)
                         .font(.subheadline)
                         .fontWeight(selectedFilter == option ? .semibold : .regular)
-                        .foregroundColor(selectedFilter == option ? .black : .gray)
+                        .foregroundColor(selectedFilter == option ? .primary : .gray)
                     
                     if selectedFilter == option {
                         Capsule()
