@@ -13,13 +13,35 @@ struct ContentView: View {
     var body: some View {
         ZStack (alignment: .topLeading) {
             MainTabView()
+                .offset(x: showMenu ? 300 : 0, y: 0)
+//                .navigationBarHidden(showMenu)
+            
+            if showMenu {
+                ZStack {
+//                    Color(.black)
+//                        .opacity(0.25)
+                }
+                .onTapGesture {
+                    withAnimation(.easeInOut) {
+                        showMenu = false
+                    }
+                }
+                .ignoresSafeArea()
+            }
+            
+            SideMenuView()
+                .frame(width: 300)
+                .background(showMenu ? Color.white : Color.clear)
+                .offset(x: showMenu ? 0 : -300, y: 0)
         }
         .navigationTitle("Home")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    showMenu.toggle()
+                    withAnimation(.easeInOut) {
+                        showMenu.toggle()
+                    }
                 } label: {
                     Circle()
                         .frame(width: 32, height: 32)
