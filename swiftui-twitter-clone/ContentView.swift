@@ -14,12 +14,12 @@ struct ContentView: View {
         ZStack (alignment: .topLeading) {
             MainTabView()
                 .offset(x: showMenu ? 300 : 0, y: 0)
-//                .navigationBarHidden(showMenu)
+                .navigationBarHidden(showMenu)
             
             if showMenu {
                 ZStack {
-//                    Color(.black)
-//                        .opacity(0.25)
+                    Color(.black)
+                        .opacity(showMenu ? 0.25 : 0.0)
                 }
                 .onTapGesture {
                     withAnimation(.easeInOut) {
